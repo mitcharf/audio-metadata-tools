@@ -2,10 +2,10 @@ FROM python:3.14-slim
 
 # Run commands up front that are less likely to change during
 # development, so the docker layer can be cached, speeding up
-# future Docker builds during development
+# future Docker builds during development.
 RUN mkdir -p /music /db /backups /logs && \
 	apt-get update && \
-    apt-get install -y --no-install-recommends make && \
+    apt-get install -y --no-install-recommends make vim-tiny && \
     rm -rf /var/lib/apt/lists/* && \
 	pip install -U pip setuptools
 
