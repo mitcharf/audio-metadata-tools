@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+/.mypy_cache/
+/pytest_cache/
+/db/*
+!/db/.gitkeep
+/backups/*
+!/backups/.gitkeep
+/logs/*
+!/logs/.gitkeep
+/music/*
+!/music/.gitkeep

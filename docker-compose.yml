@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  audio-tools:
+    build: .
+    container_name: audio-tools
+    volumes:
+      - ./music:/music
+      - ./db:/db
+      - ./backups:/backups
+      - ./logs:/logs
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
