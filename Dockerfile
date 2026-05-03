@@ -5,6 +5,10 @@ RUN mkdir -p /music /db /backups /logs
 COPY . /app
 WORKDIR /app
 
-RUN pip install -e ".[dev]"
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends make && \
+    rm -rf /var/lib/apt/lists/* && \
+	pip install -U pip setuptools && \
+    pip install -e ".[dev]"
 
 CMD ["tail", "-f", "/dev/null"]
