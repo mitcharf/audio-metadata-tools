@@ -1,11 +1,11 @@
 lint:
-    ruff check .
+	ruff check .
 
 format:
-    ruff format .
+	ruff format .
 
 typecheck:
-    mypy .
+	mypy .
 
 test:
-    pytest -q
+	pytest -q
