@@ -1,3 +1,4 @@
+from typing import Generator
 from __future__ import annotations
 from pathlib import Path
 import time
@@ -97,7 +98,7 @@ class RWLock:
     # Context managers
     # ----------------------------
     @contextmanager
-    def read_lock_cm(self, wait: bool = False, timeout: int = 30):
+    def read_lock_cm(self, wait: bool = False, timeout: int = 30) -> Generator[None, None, None]:
         self.acquire_read(wait=wait, timeout=timeout)
         try:
             yield
@@ -105,7 +106,7 @@ class RWLock:
             self.release_read()
 
     @contextmanager
-    def write_lock_cm(self, wait: bool = False, timeout: int = 30):
+    def write_lock_cm(self, wait: bool = False, timeout: int = 30) -> Generator[None, None, None]:
         self.acquire_write(wait=wait, timeout=timeout)
         try:
             yield
