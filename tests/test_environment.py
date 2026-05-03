@@ -1,2 +1,2 @@
-def test_environment():
+def test_environment() -> None:
     assert True

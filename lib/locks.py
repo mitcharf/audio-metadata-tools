@@ -1,9 +1,10 @@
 from __future__ import annotations
-from pathlib import Path
-import time
-import os
-from typing import Optional
+from collections.abc import Generator
 from contextlib import contextmanager
+from pathlib import Path
+import os
+import time
+from typing import Optional
 
 READ_LOCK = ".read.lock"
 WRITE_LOCK = ".write.lock"
@@ -15,7 +16,7 @@ class RWLock:
     Writer-priority read/write lock implemented using filesystem lock files.
     """
 
-    def __init__(self, root: Path):
+    def __init__(self, root: Path) -> None:
         self.root = root
         self.read_lock = root / READ_LOCK
         self.write_lock = root / WRITE_LOCK
@@ -97,7 +98,7 @@ class RWLock:
     # Context managers
     # ----------------------------
     @contextmanager
-    def read_lock_cm(self, wait: bool = False, timeout: int = 30):
+    def read_lock_cm(self, wait: bool = False, timeout: int = 30) -> Generator[None, None, None]:
         self.acquire_read(wait=wait, timeout=timeout)
         try:
             yield
@@ -105,7 +106,7 @@ class RWLock:
             self.release_read()
 
     @contextmanager
-    def write_lock_cm(self, wait: bool = False, timeout: int = 30):
+    def write_lock_cm(self, wait: bool = False, timeout: int = 30) -> Generator[None, None, None]:
         self.acquire_write(wait=wait, timeout=timeout)
         try:
             yield
