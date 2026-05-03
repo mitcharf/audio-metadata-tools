@@ -11,3 +11,7 @@ def run():
 
 if __name__ == "__main__":
     run()
+
+# Register lock commands
+from library_cli.lock_commands import app as lock_app
+app.add_typer(lock_app, name="lock")
