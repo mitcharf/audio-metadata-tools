@@ -6,11 +6,9 @@ __pycache__/
 .venv
 /.mypy_cache/
 /pytest_cache/
-/db/*
-!/db/.gitkeep
-/backups/*
-!/backups/.gitkeep
-/logs/*
-!/logs/.gitkeep
-/music/*
-!/music/.gitkeep
+
+# Runtime directories (never commit)
+music/
+db/
+backups/
+logs/
