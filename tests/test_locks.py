@@ -1,21 +1,21 @@
 from pathlib import Path
 from lib.locks import RWLock
 
-def test_read_lock(tmp_path) -> None:
+def test_read_lock(tmp_path: Path) -> None:
     lock = RWLock(tmp_path)
     lock.acquire_read()
     assert lock.read_lock.exists()
     lock.release_read()
     assert not lock.read_lock.exists()
 
-def test_write_lock(tmp_path) -> None:
+def test_write_lock(tmp_path: Path) -> None:
     lock = RWLock(tmp_path)
     lock.acquire_write()
     assert lock.write_lock.exists()
     lock.release_write()
     assert not lock.write_lock.exists()
 
-def test_writer_priority(tmp_path) -> None:
+def test_writer_priority(tmp_path: Path) -> None:
     lock = RWLock(tmp_path)
 
     # Simulate a reader
@@ -34,7 +34,7 @@ def test_writer_priority(tmp_path) -> None:
     assert lock.write_lock.exists()
     lock.release_write()
 
-def test_force_clear(tmp_path) -> None:
+def test_force_clear(tmp_path: Path) -> None:
     lock = RWLock(tmp_path)
     lock.acquire_read()
     lock.acquire_write(wait=False) if not lock.write_lock.exists() else None
